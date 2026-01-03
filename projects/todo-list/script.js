@@ -1,6 +1,7 @@
 const todoInput = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
+const taskCounter = document.getElementById('taskCounter');
 
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
@@ -37,8 +38,13 @@ function renderTodos() {
         `;
         todoList.appendChild(li);
     });
+        updateTaskCounter();   
 }
 
+function updateTaskCounter() {
+    const remaining = todos.filter(todo => !todo.completed).length;
+    taskCounter.textContent = `${remaining} task${remaining !== 1 ? 's' : ''} remaining`;
+}
 
 
 
